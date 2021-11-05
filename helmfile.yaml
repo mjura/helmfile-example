@@ -1,0 +1,17 @@
+repositories:
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+
+environments:
+    development:
+    staging:
+    production:
+
+releases:
+  - name: hello-world
+    namespace: {{ env "K8S_ENV" }}
+    chart: ./helmfiles.d/charts/hello-world
+    values:
+    - "./helmfiles.d/{{ env "K8S_ENV" }}/values.yaml"
+    #secrets:
+    #- "deploy/environments/{{ env "RAILS_ENV" }}/secrets.yaml"
